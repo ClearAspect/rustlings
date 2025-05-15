@@ -1,14 +1,19 @@
 // TODO: Fix the compiler error on this function.
-fn picky_eater(food: &str) -> &str {
-    if food == "strawberry" {
-        "Yummy!"
+fn foo_if_fizz(fizzish: &str) -> &str {
+    if fizzish == "fizz" {
+        "foo"
+    } else if fizzish == "fuzz" {
+        "bar"
     } else {
-        1
+        "baz"
     }
 }
 
 fn main() {
     // You can optionally experiment here.
+    println!("{}", foo_if_fizz("fizz"));
+    println!("{}", foo_if_fizz("fuzz"));
+    println!("{}", foo_if_fizz("anything else"));
 }
 
 // TODO: Read the tests to understand the desired behavior.
@@ -18,20 +23,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn yummy_food() {
-        // This means that calling `picky_eater` with the argument "food" should return "Yummy!".
-        assert_eq!(picky_eater("strawberry"), "Yummy!");
+    fn foo_for_fizz() {
+        // This means that calling `foo_if_fizz` with the argument "fizz" should return "foo".
+        assert_eq!(foo_if_fizz("fizz"), "foo");
     }
 
     #[test]
-    fn neutral_food() {
-        assert_eq!(picky_eater("potato"), "I guess I can eat that.");
+    fn bar_for_fuzz() {
+        assert_eq!(foo_if_fizz("fuzz"), "bar");
     }
 
     #[test]
-    fn default_disliked_food() {
-        assert_eq!(picky_eater("broccoli"), "No thanks!");
-        assert_eq!(picky_eater("gummy bears"), "No thanks!");
-        assert_eq!(picky_eater("literally anything"), "No thanks!");
+    fn default_to_baz() {
+        assert_eq!(foo_if_fizz("literally anything"), "baz");
     }
 }
